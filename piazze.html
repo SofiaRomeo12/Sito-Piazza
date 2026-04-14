@@ -27,15 +27,12 @@
 
         <main>
             <section class="hero-img">
-                <img src="immagini/Hero.jpg" alt="Hero immage">
+                <img src="immagini/hero piazze 5.jpg" alt="Hero immage">
             </section>
 
-            <section class="hero-descrizione">
-                <h1> Un viaggio tra le piazze della Sicilia </h1>
-                <p> Esplora i nove capoluoghi e scopri una piazza simbolo 
-                    per ciascuna città, tra storia, monumenti e curiosità
-                    che ne raccontano l'identità. </p>
-            </section>
+            <div class="barra-ricerca-container">
+                <input type="text" id="ricerca" class="barra-ricerca" placeholder="Cerca una piazza...">
+            </div>
         </main>
 
         <section class="content">
@@ -151,37 +148,59 @@
                 <img src="immagini/Footer Marchio.svg" alt="Marchio Footer">
             </div>
 
-        <div class="social-comuni-align">
-            <div class="comuni" >
-                <p style="font-weight: 600;">Comuni</p>
-                <ul>
-                    <li><a href="palermo.html">Palermo</a></li>
-                    <li><a href="catania.html">Catania</a></li>
-                    <li><a href="messina.html">Messina</a></li>
-                    <li><a href="siracusa.html">Siracusa</a></li>
-                    <li><a href="ragusa.html">Ragusa</a></li>
-                    <li><a href="agrigento.html">Agrigento</a></li>
-                    <li><a href="trapani.html">Trapani</a></li>
-                    <li><a href="enna.html">Enna</a></li>
-                    <li><a href="caltanissetta.html">Caltanissetta</a></li>
-                </ul>
-            </div>
+            <div class="social-comuni-align">
+                <div class="comuni" >
+                    <p style="font-weight: 600;">Comuni</p>
+                    <ul>
+                        <li><a href="palermo.html">Palermo</a></li>
+                        <li><a href="catania.html">Catania</a></li>
+                        <li><a href="messina.html">Messina</a></li>
+                        <li><a href="siracusa.html">Siracusa</a></li>
+                        <li><a href="ragusa.html">Ragusa</a></li>
+                        <li><a href="agrigento.html">Agrigento</a></li>
+                        <li><a href="trapani.html">Trapani</a></li>
+                        <li><a href="enna.html">Enna</a></li>
+                        <li><a href="caltanissetta.html">Caltanissetta</a></li>
+                    </ul>
+                </div>
 
-            <div class="social">
-                <p style="font-weight: 600;">Seguici</p>
-                <ul>
-                    <li>Instagram</li>
-                    <li>Facebook</li>
-                </ul>
+                <div class="social">
+                    <p style="font-weight: 600;">Seguici</p>
+                    <ul>
+                        <li>Instagram</li>
+                        <li>Facebook</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-
+            
             <div class="copyright">
                 <p> © 2026 Agorà Siciliane. Tutti i diritti riservati.
                     È vietata la riproduzione, anche parziale, dei contenuti
                     presenti su questo sito senza autorizzazione scritta. </p>
             </div>
-
         </footer>
+
+        <script>
+            let barraRicerca = document.getElementById('ricerca');
+            barraRicerca.addEventListener('input', cerca); //aggiunge un listener per la scrittura nel tag input
+
+            function cerca(){
+                let testoBarraRicerca = barraRicerca.value.toLowerCase(); //testo
+                let cards = document.querySelectorAll('.card'); //tutte le cards
+
+                //per ogni card vede se il titolo o il paragrafo sono simili al testo della barra di ricerca
+                cards.forEach(card => {
+                    let nome = card.querySelector('h2').textContent.toLowerCase();
+                    let citta = card.querySelector('p').textContent.toLowerCase();
+
+                    if (nome.includes(testoBarraRicerca) || citta.includes(testoBarraRicerca)) {
+                        card.style.display = 'block'; //se trova un risultato lo mostra
+                    }
+                    else {
+                        card.style.display = 'none'; //se non trova niente nasconde le cards
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
